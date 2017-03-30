@@ -79,6 +79,41 @@ module.exports = {
     })
   },
 
+  create: function(req,res){
+    var bucket = new Bucket(req.body);
+    bucket.save(function(err,doc){
+      if(err){
+        return res.json(err);
+      }
+      User.findById(req.body._user, function(err, user1){
+        if(err){
+          return res.json(err);
+        }
+        user1.buckets.push(bucket);
+        user1.save(function(err){
+          if(err){
+            return res.json(err);
+          }
+          else if(req.body._tag != undefined){
+            User.findById(req.body._tag, function(err, user2){
+              if(err){
+                return res.json(err);
+              }
+              user2.buckets.push(bucket);
+              user2.save(function(err){
+                if(err){
+                  return res.json(err);
+                }
+              })
+            })
+          }
+          return res.json(doc);
+        })
+      })
+    })
+  },
+
+
   update: function(req, res) {
    Bucket.findById(req.params.id).exec(function(err, bucket) {
      console.log("HEYYYYY")

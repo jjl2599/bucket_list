@@ -20,7 +20,5 @@ app.factory('BucketFactory', function($http){
 		$http.post('/buckets', newBucket).then(callback)
 	}
 
-
-
   return factory;
 });

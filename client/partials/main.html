@@ -13,12 +13,40 @@
 	  <div class='body'>
 	    <div class='mybucket'>
         <h4>Before I die I want to... </h4>
-        <div ng-repeat="bucket in BC.buckets" ng-if="bucket._user._id == UC.current_user._id">
-					<h4>
-						<!--ng-if="BC.bucket.status == 'true'"-->
-						<input type="checkbox" ng-model="BC.bucket[$index]" ng-change="BC.update(bucket._id)">
-						{{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
-					</h4>
+				<div ng-repeat="bucket in BC.buckets">
+
+					<div ng-if="bucket._user._id == UC.current_user._id && bucket._tag._id == 'undefined'">
+						<div ng-if="bucket.status === 'true'">
+							<h4>
+							<strong>"CHECKED-DONE"</strong>
+							<input type="checkbox" ng-model="BC.bucket[$index]" ng-change="BC.update(bucket._id)">
+								{{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
+							</h4>
+						</div>
+						<div ng-if="bucket.status === 'false'">
+							<h4>
+								<input type="checkbox" ng-model="BC.bucket[$index]" ng-change="BC.update(bucket._id)">
+								{{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
+							</h4>
+						</div>
+					</div>
+
+					<div ng-if="bucket._user._id == UC.current_user._id || bucket._tag._id == UC.current_user._id">
+						<div ng-if="bucket.status === 'true'">
+							<h4>
+							<strong>"CHECKED-DONE"</strong>
+							<input type="checkbox" ng-model="BC.bucket[$index]" ng-change="BC.update(bucket._id)">
+								{{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
+							</h4>
+						</div>
+						<div ng-if="bucket.status === 'false'">
+							<h4>
+								<input type="checkbox" ng-model="BC.bucket[$index]" ng-change="BC.update(bucket._id)">
+								{{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
+							</h4>
+						</div>
+
+					</div>
         </div>
 
 	    </div>
