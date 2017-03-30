@@ -1,6 +1,4 @@
 <div ng-controller:"BucketsController as BC" ng-init="UC.find()">
-  <h1>Show Friends</h1>
-
   <form>
     <button><a href="#!/main">Home</a></button>
     <button ng-click="UC.logout()">Logout</button>
@@ -20,57 +18,4 @@
       {{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
     </div>
   </div>
-
 </div>
-
-<!--
-<div class='container'>
-
-  <div class='headerz'>
-    <div class='row'>
-      <h1>Mean Bucket List</h1>
-      <div class='nav-buttons pull-right'>
-        <button class='btn btn-primary' ng-click='home()'>Home</button>
-        <button class='btn btn-danger' ng-click='logout()'>Logout</button>
-      </div>
-    </div>
-  </div>
-
-  <div class='bodyz'>
-    <div class='row'>
-      <h2>{{user.firstname}}'s Bucket List </h2>
-    </div>
-
-    <div class='bucketPendingDiv'>
-      <div class='row'>
-        <h4>Future Buckets</h4>
-        <div class='bucketPendingList' ng-if="bucketList">
-          <p ng-repeat="p_item in bucketList" ng-if="p_item.completed == 'false'">
-            <input ng-init="itemId = p_item._id" ng-if="userInSession._id == user._id"  type='checkbox' ng-change='markDone(itemId)' ng-model="item.checkbox">
-            <span>{{p_item.title}} - </span>
-            <span>{{p_item.description}}</span>
-            <span class="createdCompleted pull-right">Created: {{p_item.created_at | date}}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class='bucketDoneDiv'>
-      <div class='row'>
-        <h4>Accomplished Buckets</h4>
-        <div class="bucketDoneList" ng-if="bucketList">
-          <p ng-repeat="item in bucketList" ng-if="item.completed == 'true'">
-            <input type='checkbox' checked disabled>
-            <span>{{item.title}} - </span>
-            <span>{{item.description}}</span>
-            <span class='createdCompleted pull-right'>
-              <span>Created: {{item.created_at | date}} </span>
-              <span>Completed: {{item.updated_at | date}}</span>
-            </span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-</div> -->

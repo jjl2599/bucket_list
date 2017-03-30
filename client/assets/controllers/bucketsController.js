@@ -52,6 +52,7 @@ app.controller('BucketsController', ['BucketFactory', 'UserFactory', '$location'
     console.log(id);
     BucketFactory.update(id, function(res){
       self.find(id);
+      $location.url('/main')
     });
   }
 
