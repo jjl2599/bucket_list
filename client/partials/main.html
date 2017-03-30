@@ -1,0 +1,50 @@
+<div ng-controller="UsersController as UC" ng-init="UC.index()">
+	<div class='container'>
+
+	  <div>
+	    <h1>Bucket Lists</h1>
+	    <div class="userdash">
+				<button ng-click="UC.logout()">Logout</button>
+				<h3>Current User: {{UC.current_user.firstname}}</h3>
+				<p ng-repeat="error in BC.errors track by $index">{{error}}</p>
+	    </div>
+	  </div>
+
+	  <div class='body'>
+	    <div class='mybucket'>
+        <h4>Before I die I want to... </h4>
+        <div ng-repeat="bucket in BC.buckets" ng-if="bucket._user._id == UC.current_user._id">
+					<h4>
+						<!--ng-if="BC.bucket.status == 'true'"-->
+						<input type="checkbox" ng-model="BC.bucket[$index]" ng-change="BC.update(bucket._id)">
+						{{bucket.title}} - {{bucket.description}}... - {{bucket.createdAt | date : 'MM/dd/yyyy'}}
+					</h4>
+        </div>
+
+	    </div>
+
+	    <div class="addBucket">
+	      <div>
+	        <h4>Add new bucket</h4>
+
+	        <form ng-submit='BC.create(BC.newBucket)' novalidate>
+
+	          <input type='text' ng-model='BC.newBucket.title' placeholder='Add a Title' required>
+	          <input type='text' ng-model='BC.newBucket.description' placeholder='Add a Description' required>
+	          <select ng-model='BC.newBucket._tag'>
+	            <option placeholder="Tag User" ng-repeat="user in UC.users"  ng-show="user._id != UC.current_user._id" value='{{user._id}}'>{{user.firstname}}</option>
+	          </select>
+	          <input type='submit' value='Add to List'>
+	        </form>
+
+	      </div>
+	    </div>
+
+	    <div class='users'>
+	      <h4>List of other users (Click to view profile):</h4>
+	      <p ng-repeat="user in UC.users" ng-show="user._id != UC.current_user._id"><a ng-href="#!/user/{{user._id}}">{{user.firstname}}</a></p>
+	    </div>
+	  </div>
+
+	</div>
+</div>
